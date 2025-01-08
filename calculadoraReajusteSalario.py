@@ -1,15 +1,22 @@
+def valor_aumento(salario, aumento):
+    return float(salario * aumento / 100)
+
+def novo_salario(salario, aumento):
+    return float(salario * aumento / 100 + salario)
+    
 def main():
     while True:
-        salario = float(input("Qual o salario do funcionario? "))
-        aumento = float(input("Qual a porcentagem do aumento? "))
-        valor_aumento = float(salario * aumento / 100)
-        novo_salario = float(salario * aumento / 100 + salario)
-    
-        print(f"O novo valor do salario será de {novo_salario:.2f}, o valor do aumento foi de {valor_aumento:.2f}.")
+        salario = float(input("\nQual o salario do funcionario? "))
+        aumento = 15        
+                
+        if salario <= 1250:            
+            print(f"O novo valor do salario será de R${novo_salario(salario, aumento):.2f}, o valor do aumento foi de R${valor_aumento(salario, aumento):.2f}.")
+        if salario > 1250:
+            aumento = 10                
+            print(f"O novo valor do salario será de R${novo_salario(salario, aumento):.2f}, o valor do aumento foi de R${valor_aumento(salario, aumento):.2f}.")
         
-        novoCalculo = input("Gostaria de realizar um novo calculo? (s/n)")
+        novoCalculo = input("\nGostaria de realizar um novo calculo? (s/n)")
         if novoCalculo.lower() != "s":
             print("Até a próxima")
             break
 main()
-    
