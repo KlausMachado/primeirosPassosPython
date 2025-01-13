@@ -1,0 +1,58 @@
+import numpy as np
+import pandas as pd
+
+class Paciente:
+    def __init__(self, nome, idade, sexo, peso, altura):
+        self.nome = nome
+        self.idade = idade
+        self.sexo = sexo
+        self.peso = peso
+        self.altura = altura
+
+# Criando dicionário de pacientes
+pacientes = {
+    'paciente_1': Paciente('Maria', 25, 'F', 60, 1.70),
+    'paciente_2': Paciente('Orion', 30, 'M', 80, 1.80),
+    'paciente_3': Paciente('Joao', 45, 'M', 70, 1.85),
+    'paciente_4': Paciente('Ana', 35, 'F', 90, 1.65)
+}
+
+# Convertendo pacientes para DataFrame
+l_pacientes = [p.__dict__ for p in pacientes.values()]
+df_pacientes = pd.DataFrame.from_records(l_pacientes, index=pacientes.keys())
+
+# Calculando IMC
+df_pacientes['IMC'] = df_pacientes['peso'] / (df_pacientes['altura'] ** 2)
+df_pacientes['IMC'] = df_pacientes['IMC'].round(2)
+
+# Classificando IMC
+def classificar_imc(imc):
+    if imc < 18.5:
+        return 'Magreza'
+    elif imc < 25:
+        return 'Normal'
+    elif imc < 30:
+        return 'Sobrepeso'
+    else:
+        return 'Obesidade'
+
+df_pacientes['Classificação'] = df_pacientes['IMC'].apply(classificar_imc)
+
+# Exibindo DataFrame
+print(df_pacientes)
+
+# Análise estatística
+media_imc = df_pacientes['IMC'].mean()
+sobrepeso = df_pacientes[df_pacientes['IMC'] > 25]
+percentual_sobrepeso = (len(sobrepeso) / len(df_pacientes)) * 100
+
+# Resultados
+print(f"\nMédia do IMC: {media_imc:.2f}")
+print(f"Percentual de pacientes com sobrepeso/obesidade: {percentual_sobrepeso:.2f}%")
+
+# Pacientes com sobrepeso ou obesidade
+if not sobrepeso.empty:
+    print("\nPacientes com sobrepeso ou obesidade:")
+    print(sobrepeso[['nome', 'IMC', 'Classificação']])
+else:
+    print("\nNão há pacientes com sobrepeso ou obesidade.")
