@@ -1,6 +1,6 @@
 # EstudandoPython
 <h2>Exercicios desenvolvidos em Python para fixar conheimentos</h2>
-Exercicios vão do basico ao avançado
+Exercicios vão do basico ao intermediario
 
 <h3>Conceitos praticados:</h3>
  <h4> -Estruturas de Dados</h4> <br>
@@ -15,7 +15,6 @@ Exercicios vão do basico ao avançado
     3- Metodos <br>
     4- Atributos <br>
     5- Encapsulamento <br> 
-    6- Herança <br>
  <h4> -Outros Conceitos </h4><br> 
     1- Funções <br>
     2- Módulos <br>
